@@ -7,13 +7,33 @@ class ContactController {
       response.json(contacts);
     }
 
-    show() {
-      // Obter UM registro
+    async show(request , response) {
+      const { id } = request.params;
+
+      const contact = await ContactsRepository.findById(id);
+
+      if (!contact) {
+        // 404: Not Found
+        return response.status(404).json({error:' User not found'});
+      }
+
+      response.json(contact);
+
     }
 
-    store() {
+     async store(request, response) {
       // Criar um novo registro
+      const {name, email, phone, category_id, } = request.body;
 
+      const contactExists = await ContactsRepository.findByEmail(email);
+
+      if (contactExists) {
+        return response.status(400).json({ error: 'This e-mail is already been taken'});
+      }
+       const contact = await ContactsRepository.crate({
+        name, email, phone, category_id,
+       });
+       response.json(contact);
     }
 
     update() {
@@ -21,8 +41,22 @@ class ContactController {
 
     }
 
-    delete() {
-      // Deletar um registro
+    async delete(request, response) {
+      const { id } = request.params;
+
+
+      const contact = await ContactsRepository.findById(id);
+
+      if (!contact) {
+        // 404: Not Found
+        return response.status(404).json({message:'error: User not found'});
+      }
+
+      await ContactsRepository.delete(id);
+      // 204: No Content
+      response.sendStatus(204);
+
+
     }
 }
 
