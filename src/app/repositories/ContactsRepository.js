@@ -1,5 +1,5 @@
 const { v4 } = require('uuid');
-const { connect } = require('../../routes');
+
 
 let contacts = [
   {
@@ -9,6 +9,13 @@ let contacts = [
      fhone: '23221099',
      category_id: v4(),
   },
+  {
+    id: v4(),
+    name: 'Tati',
+    email: 'tatipjs@o@mail.com',
+    fhone: '2525474765',
+    category_id: v4(),
+ },
 ];
 
 class ContactsRepository {
