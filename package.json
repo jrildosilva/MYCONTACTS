@@ -1,20 +1,8 @@
 {
-  "name": "mycontacts",
-  "version": "1.0.0",
-  "description": "API para contatos",
-  "main": "src/index.js",
-  "author": "Jose Rildo",
-  "license": "MIT",
-  "scripts": {
-    "dev": "nodemon src/index.js"
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
-    "pg": "^8.7.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.0.1",
-    "nodemon": "^2.0.14"
+    "react-scripts": "^5.0.0"
   }
 }
