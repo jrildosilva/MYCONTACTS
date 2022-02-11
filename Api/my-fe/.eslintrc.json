@@ -23,6 +23,9 @@
         ],
         "react/react-in-jsx-scope": "off",
         "import/prefer-default-export": "off",
-        "react/jsx-indent": "off"
+        "react/jsx-indent": "off",
+        "react/jsx-no-undef": "off",
+        "import/named": "off",
+        "quotes":"off"
     }
 }
