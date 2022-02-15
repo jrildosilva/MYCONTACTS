@@ -34,7 +34,7 @@ export const ListContainer = styled.div`
 margin-top: 24px;
 
     header {
-       margin-bonttom: 8px;
+       margin-bottom: 8px;
 
        button {
          background: transparent;
@@ -62,6 +62,10 @@ export const Card = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  & + & {
+    margin-top: 16px;
+  }
+
   .info {
     .contact-name{
       display: flex;
@@ -85,15 +89,15 @@ export const Card = styled.div`
       color: ${({ theme }) => theme.colors.gray[200]};
     }
 
-    .actions {
-      display: flex;
-      align-items: center;
-
-      button {
+    .acao {
+       display: flex;
+       align-items;
+       button {
         background: transparent;
         border: none;
         margin-left: 8px;
-      }
+       }
     }
+
 
 `;

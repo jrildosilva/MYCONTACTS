@@ -26,7 +26,14 @@
         "react/jsx-indent": "off",
         "react/jsx-no-undef": "off",
         "import/named": "off",
-        "quotes":"off"
+        "quotes":"off",
+        "object-curly-newline": ["error", {
+          "ObjectExpression": "always",
+          "ObjectPattern": { "multiline": true },
+          "ImportDeclaration": "never",
+          "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+      }]
+
 
     }
 }
