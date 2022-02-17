@@ -108,9 +108,9 @@ export const Card = styled.div`
       color: ${({ theme }) => theme.colors.gray[200]};
     }
 
-    .acao {
+    .actions {
        display: flex;
-       align-items;
+       align-items: center;
        button {
         background: transparent;
         border: none;
