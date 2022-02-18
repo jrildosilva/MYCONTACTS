@@ -11,7 +11,6 @@ export default styled.input`
   outline: none;
   padding: 0 16px;
   font-size: 16px;
-  font-family: 'sora', sans-serif;
   transition: border-color 0.2s ease-in;
 
   &:focus {
