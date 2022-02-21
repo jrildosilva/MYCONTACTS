@@ -37,6 +37,6 @@ export default function ContactForm({ buttonLabel }) {
   );
 }
 
-ContactForm.proptypes = {
+ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
 };

@@ -10,6 +10,6 @@ export default function FormGroup({ children }) {
   );
 }
 
-FormGroup.proptype = {
+FormGroup.propTypes = {
   children: PropTypes.node.isRequired,
 };
