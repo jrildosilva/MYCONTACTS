@@ -8,10 +8,17 @@ import Select from '../Select';
 import Button from '../Button';
 
 export default function ContactForm({ buttonLabel }) {
+  // input.addEventListener('change', function (event) {
+
+  // });
+
   return (
      <Form>
       <FormGroup>
-        <Input placeholder="Nome" />
+        <Input
+          placeholder="Nome"
+          onChange={(event) => console.log(event.target.value)}
+        />
       </FormGroup>
 
        <FormGroup
