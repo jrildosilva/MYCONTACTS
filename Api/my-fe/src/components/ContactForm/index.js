@@ -14,8 +14,16 @@ export default function ContactForm({ buttonLabel }) {
   const [phone, setPhone] = useState('');
   const [category, setCategory] = useState('');
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log({
+      name, email, phone, category,
+    });
+  }
+
   return (
-     <Form>
+     <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Input
           placeholder="Nome"
