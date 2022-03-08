@@ -6,7 +6,7 @@
   "author": "Jose Rildo",
   "license": "MIT",
   "scripts": {
-    "start": "react-scrips start",
+    "start": "react-scripts start",
     "build": "babel src -d lib",
     "test": "jest",
     "dev": "nodemon src/index.js"

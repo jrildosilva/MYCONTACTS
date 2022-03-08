@@ -5,6 +5,7 @@ class CategoryController {
        const categories = await categoriesRepository.findAll();
 
       response.json(categories);
+
     }
     async store(request, response) {
      const { name } = request.body;
