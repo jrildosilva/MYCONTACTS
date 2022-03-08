@@ -50,7 +50,9 @@ export default function Home() {
   );
 }
 
-fetch('http://localhost:3001/contacts')
+fetch('http://localhost:3001/cantacts', {
+  method: 'DELETE',
+})
    .then((response) => {
      console.log('response', response);
 
