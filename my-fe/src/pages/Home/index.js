@@ -6,7 +6,6 @@ import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
-
 export default function Home() {
   return (
     <Container>
@@ -51,13 +50,16 @@ export default function Home() {
 }
 
 fetch('http://localhost:3001/cantacts', {
-  method: 'DELETE',
+  method: 'GET',
+  headers: new Headers({
+    'X-App-ID': '123',
+  }),
+
 })
-   .then((response) => {
-     console.log('response', response);
+  .then((response) => {
+    console.log('response', response);
+  })
 
-   })
-   .catch((error) => {
-     console.log('erro', error);
-   });
-
+  .catch((error) => {
+    console.log('erro', error);
+  });

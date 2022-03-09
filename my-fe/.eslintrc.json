@@ -26,14 +26,8 @@
       "react/jsx-indent": "off",
       "react/jsx-no-undef": "off",
       "import/named": "off",
-      "quotes":"off",
-      "react/jsx-no-bind": [<enabled>, {
-        "ignoreDOMComponents": <boolean> || false,
-        "ignoreRefs": <boolean> || false,
-        "allowArrowFunctions": <boolean> || false,
-        "allowFunctions": <boolean> || false,
-        "allowBind": <boolean> || false
-      }]
+      "quotes":"off"
+
 
 }
 
