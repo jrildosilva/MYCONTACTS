@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { Container, InputSearchContainer, Header, ListContainer, Card } from './styles';
+import {
+  Container, InputSearchContainer, Header, ListContainer, Card,
+} from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
@@ -49,7 +51,7 @@ export default function Home() {
   );
 }
 
-fetch('http://localhost:3001/cantacts', {
+fetch('http://localhost:3001/contacts', {
   method: 'GET',
   headers: new Headers({
     'X-App-ID': '123',
