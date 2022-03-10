@@ -12,15 +12,15 @@ import { Container } from './styles';
 function App() {
   return (
     <BrowserRouter>
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyles />
+        <ThemeProvider theme={defaultTheme}>
+          <GlobalStyles />
 
              <Container>
                <Header />
                <Routes />
              </Container>
 
-    </ThemeProvider>
+        </ThemeProvider>
     </BrowserRouter>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
 import {
   Container, InputSearchContainer, Header, ListContainer, Card,
 } from './styles';
@@ -9,13 +9,36 @@ import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
 export default function Home() {
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/contacts')
+      .then(async (response) => {
+        const json = await response.json();
+        setContacts(json);
+
+        setContacts([{}]);
+      })
+
+      .catch((error) => {
+        console.log('erro', error);
+      });
+  }, []);
+
+  console.log(contacts);
+
   return (
     <Container>
       <InputSearchContainer>
         <input type="text" placeholder="pesquise pelo nome..." />
       </InputSearchContainer>
+
       <Header>
-         <strong>3 contatos </strong>
+         <strong>
+           {contacts.length}
+           {contacts.length === 1 ? ' Contato ' : ' Contatos '}
+          contatos
+         </strong>
          <Link to="/new">Novo contato</Link>
       </Header>
 
@@ -26,42 +49,32 @@ export default function Home() {
              <img src={arrow} alt="Arrow" />
           </button>
         </header>
-
-        <Card>
-         <div className="info">
-            <div className="contact-name">
-              <strong>JOSÉ RILDO DA SILVA</strong>
-              <small>instagram</small>
-            </div>
-            <span>jrsrildo44@gmail.com</span>
-            <span>(11)9999-9999</span>
-         </div>
-
-         <div className="actions">
-            <Link to="/edit/123">
-              <img src={edit} alt="Edit" />
-            </Link>
-            <button type="button">
-               <img src={trash} alt="Delete" />
-            </button>
-         </div>
-        </Card>
       </ListContainer>
+
+       {contacts.map((contact) => (
+          <Card key={contact.id}>
+          <div className="info">
+             <div className="contact-name">
+               <strong>{contact.name}</strong>
+               {contact.category_name && (
+                 <small>{contact.category_name}</small>
+               )}
+             </div>
+             <span>{contact.email}</span>
+             <span>{contact.phone}</span>
+          </div>
+
+          <div className="actions">
+             <Link to={`/edit/${contact.id}`}>
+               <img src={edit} alt="Edit" />
+             </Link>
+             <button type="button">
+                <img src={trash} alt="Delete" />
+             </button>
+          </div>
+          </Card>
+       ))}
+
     </Container>
   );
 }
-
-fetch('http://localhost:3001/contacts', {
-  method: 'GET',
-  headers: new Headers({
-    'X-App-ID': '123',
-  }),
-
-})
-  .then((response) => {
-    console.log('response', response);
-  })
-
-  .catch((error) => {
-    console.log('erro', error);
-  });
