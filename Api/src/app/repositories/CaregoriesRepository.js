@@ -11,7 +11,7 @@ class categoriesRepository {
        INSERT INTO categories(name)
        VALUES($1)
        RETURNING *
-    `, [ name]);
+    `, [ name ]);
     return row;
   }
 
