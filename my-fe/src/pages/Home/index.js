@@ -11,6 +11,7 @@ import trash from '../../assets/images/icons/trash.svg';
 export default function Home() {
   const [contacts, setContacts] = useState([]);
   const [orderBy, setOrderBy] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
@@ -22,17 +23,28 @@ export default function Home() {
         console.log('erro', error);
       });
   }, [orderBy]);
-
+  console.log(contacts);
   function handleToggleOrderBy() {
     setOrderBy(
       (prevState) => (prevState === 'asc' ? 'desc' : 'asc'),
     );
   }
 
+  function handleChangeSearchTerm(event) {
+    setSearchTerm(event.target.value);
+  }
+
+  console.log(searchTerm);
+
   return (
     <Container>
       <InputSearchContainer>
-        <input type="text" placeholder="pesquise pelo nome..." />
+        <input
+          value={searchTerm}
+          type="text"
+          placeholder="pesquise pelo nome..."
+          onChange={handleChangeSearchTerm}
+        />
       </InputSearchContainer>
 
       <Header>
@@ -50,27 +62,25 @@ export default function Home() {
           </button>
       </ListHeader>
 
-       {contacts.map((contact) => (
+      {contacts.map((contact) => (
           <Card key={contact.id}>
-          <div className="info">
-             <div className="contact-name">
-               <strong>{contact.name}</strong>
-               {contact.category_name && (
-                 <small>{contact.category_name}</small>
-               )}
+             <div className="info">
+                <div className="contact-name">
+                   <strong>{contact.name}</strong>
+                   {contact.category_name && <small>{contact.category_name}</small>}
+                </div>
+                <span>{contact.email}</span>
+                <span>{contact.phone}</span>
              </div>
-             <span>{contact.email}</span>
-             <span>{contact.phone}</span>
-          </div>
 
-           <div className="actions">
-             <Link to={`/edit/${contact.id}`}>
-               <img src={edit} alt="Edit" />
-             </Link>
-             <button type="button">
+             <div className="actions">
+              <Link to={`/edit/${contact.id}`}>
+                <img src={edit} alt="Edit" />
+              </Link>
+              <button type="button">
                 <img src={trash} alt="Delete" />
-             </button>
-           </div>
+              </button>
+             </div>
           </Card>
        ))}
 
