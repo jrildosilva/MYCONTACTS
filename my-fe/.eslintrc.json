@@ -5,6 +5,7 @@
     },
     "extends": [
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "airbnb"
     ],
     "parserOptions": {
@@ -15,7 +16,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks"
     ],
     "rules": {
       "react/jsx-filename-extension": [
@@ -26,7 +28,9 @@
       "react/jsx-indent": "off",
       "react/jsx-no-undef": "off",
       "import/named": "off",
-      "quotes":"off"
+      "quotes":"off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
 
 
 }

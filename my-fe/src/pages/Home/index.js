@@ -20,23 +20,26 @@ export default function Home() {
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   )), [contacts, searchTerm]);
-  console.log('renderizou');
-  useEffect(() => {
-    setIsLoading(true);
 
-    fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
-      .then(async (response) => {
+  useEffect(() => {
+    async function loadContacts() {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `http://localhost:3001/contacts?orderBy=${orderBy}`,
+        );
         await delay(1000);
 
         const json = await response.json();
         setContacts(json);
-      })
-      .catch((error) => {
-        console.log('erro', error);
-      })
-      .finally(() => {
+      } catch (error) {
+        console.log('De olho no erro', error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    }
+    loadContacts();
+    return () => console.log('cleanup');
   }, [orderBy]);
 
   function handleToggleOrderBy() {

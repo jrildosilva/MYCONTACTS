@@ -25,7 +25,7 @@ export default function ContactForm({ buttonLabel }) {
     getErrorMessageByFieldName,
   } = useErrors();
 
-  const isFormValid = (name &&  errors.length === 0);
+  const isFormValid = (name && errors.length === 0);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -55,17 +55,19 @@ export default function ContactForm({ buttonLabel }) {
     event.preventDefault();
 
   // console.log({
-   //   name, email, phone:phone.replace(/\D/g, ''), category,
-   // });
+  //   name, email, phone:phone.replace(/\D/g, ''), category,
+  // });
   }
 
   return (
+     // eslint-disable-next-line react/jsx-no-bind
      <Form onSubmit={handleSubmit} noValidate>
       <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
           error={getErrorMessageByFieldName('name')}
           placeholder="Nome *"
           value={name}
+          // eslint-disable-next-line react/jsx-no-bind
           onChange={handleNameChange}
         />
       </FormGroup>
@@ -76,6 +78,7 @@ export default function ContactForm({ buttonLabel }) {
            error={getErrorMessageByFieldName('email')}
            placeholder="E-mail"
            value={email}
+           // eslint-disable-next-line react/jsx-no-bind
            onChange={handleEmailChange}
          />
 
@@ -85,6 +88,7 @@ export default function ContactForm({ buttonLabel }) {
          <Input
            placeholder="Telefone"
            value={phone}
+           // eslint-disable-next-line react/jsx-no-bind
            onChange={handlePhoneChange}
            maxLength="15"
          />
