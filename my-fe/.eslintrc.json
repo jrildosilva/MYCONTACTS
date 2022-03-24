@@ -30,7 +30,8 @@
       "import/named": "off",
       "quotes":"off",
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn"
+      "react-hooks/exhaustive-deps": "warn",
+      "class-methods-use-this":"off"
 
 
 }
