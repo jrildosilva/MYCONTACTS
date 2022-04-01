@@ -6,11 +6,20 @@ class HttpClient {
   }
 
   async get(path) {
-    const response = await fetch(`http://localhost:3001${path}`);
-
     await delay(1000);
 
-    return response.json();
+    const response = await fetch(`${this.baseURL}${path}`);
+    let body = null;
+    const ContentType = response.headers.get('Content-Type');
+    if (ContentType.includes('application/json')) {
+      body = await response.json();
+    }
+
+    if (response.ok) {
+      return body;
+    }
+
+    throw new Error(body.error);
   }
 }
 
