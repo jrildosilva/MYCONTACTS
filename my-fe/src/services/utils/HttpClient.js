@@ -9,6 +9,7 @@ class HttpClient {
     await delay(1000);
 
     const response = await fetch(`${this.baseURL}${path}`);
+
     let body = null;
     const ContentType = response.headers.get('Content-Type');
     if (ContentType.includes('application/json')) {
@@ -19,7 +20,9 @@ class HttpClient {
       return body;
     }
 
-    throw new Error(body.error);
+    throw new Error(
+      body?.error || `${response.status} - ${response.statusText}`,
+    );
   }
 }
 
