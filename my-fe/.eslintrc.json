@@ -31,7 +31,8 @@
       "quotes":"off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-      "class-methods-use-this":"off"
+      "class-methods-use-this":"off",
+      "react/jsx-equals-spacing": [2, "always"]
 
 
 }
