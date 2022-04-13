@@ -12,6 +12,7 @@ export default styled.button`
   border-radius: 4px;
   transition: background 0.2s ease-in;
 
+
 &:hover {
   background: ${({ theme }) => theme.colors.primary.light};
 }

@@ -1,14 +1,21 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import {
-  Container, InputSearchContainer, Header, ListHeader, Card,
+  Container,
+  InputSearchContainer,
+  Header,
+  ListHeader,
+  Card,
+  ErrorContainer,
 } from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
+import sad from '../../assets/images/icons/sad.svg';
 
 import Loader from '../../components/Loader';
+import Button from '../../components/Button';
 
 import ContactsService from '../../services/ContactsService';
 
@@ -63,7 +70,7 @@ export default function Home() {
         />
       </InputSearchContainer>
 
-      <Header hasError = {hasError}>
+      <Header hasError={hasError}>
 
         {!hasError && (
            <strong>
@@ -75,9 +82,15 @@ export default function Home() {
       </Header>
 
       {hasError && (
-        <div>
-          Ocorreu um erro!
-        </div>
+        <ErrorContainer>
+         <img src={sad} alt="Eu estou aqui" />
+         <div className="details">
+           <strong>Ocorreu um erro ao obter os seus contatos!</strong>
+           <Button type="button">
+             Tentar novamente
+           </Button>
+         </div>
+        </ErrorContainer>
       )}
 
       {filteredContacts.length > 0 && (
