@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
-  useEffect, useState, useMemo, useCallback,
+  useEffect, useState, useMemo,
 } from 'react';
 import {
   Container,
@@ -32,18 +32,20 @@ export default function Home() {
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   )), [contacts, searchTerm]);
 
-  const loadContacts = useCallback(async () => {
-    try {
-      setIsLoading(true);
 
-      const contactsList = await ContactsService.listContacts(orderBy);
-
-      setHasError(false);
-      setContacts(contactsList);
-    } catch {
-      setHasError(true);
-    } finally {
-      setIsLoading(false);
+  const loadContacts = useMemo(() => {
+    return async () => {
+      try {
+        setIsLoading(true);
+        const contactsList = await ContactsService.listContacts(orderBy);
+        setHasError(false);
+        setContacts(contactsList);
+      } catch {
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    // eslint-disable-next-line semi
     }
   }, [orderBy]);
 
@@ -68,18 +70,31 @@ export default function Home() {
     <Container>
      <Loader isLoading={isLoading} />
 
-      <InputSearchContainer>
-        <input
-          value={searchTerm}
-          type="text"
-          placeholder="pesquise pelo nome..."
-          onChange={handleChangeSearchTerm}
-        />
-      </InputSearchContainer>
+     {contacts.length > 0 && (
+        <InputSearchContainer>
+         <input
+           value={searchTerm}
+           type="text"
+           placeholder="pesquise pelo nome..."
+           onChange={handleChangeSearchTerm}
+         />
+        </InputSearchContainer>
 
-      <Header hasError={hasError}>
+     )}
 
-        {!hasError && (
+      <Header
+        justifyContent={
+          // eslint-disable-next-line no-nested-ternary
+          hasError
+            ? 'flex-end'
+            : (
+              contacts.length > 0
+                ? 'space-between'
+                : 'center'
+            )
+          }
+      >
+        {(!hasError && contacts.length > 0) && (
            <strong>
              {filteredContacts.length}
              {filteredContacts.length === 1 ? ' Contato ' : ' Contatos '}
